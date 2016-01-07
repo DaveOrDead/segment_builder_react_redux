@@ -35,4 +35,5 @@ function init(domElement) {
 
 var $ = (selector) => Array.prototype.slice.call(document.querySelectorAll(selector));
 
+
 $('segmentbuilder').map((element) => init(element));
