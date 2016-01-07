@@ -26,14 +26,22 @@ const store = configureStore({
 
 });
 
-function init(domElement) {
-  render(
-    <Provider store={store}>
-      <SegmentBuilder />
-    </Provider>, domElement);
-}
+render(
+  <Provider store={store}>
+    <SegmentBuilder />
+  </Provider>,
+  document.getElementById('root')
+)
 
-var $ = (selector) => Array.prototype.slice.call(document.querySelectorAll(selector));
+// function init(domElement) {
+//   render(
+//     <Provider store={store}>
+//       <SegmentBuilder />
+//     </Provider>, domElement);
+// }
+
+// var $ = (selector) => Array.prototype.slice.call(document.querySelectorAll(selector));
 
 
-$('segmentbuilder').map((element) => init(element));
+// $('segmentbuilder').map((element) => init(element));
+
