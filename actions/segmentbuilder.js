@@ -41,7 +41,6 @@ export function removeRule(ruleKey) {
 }
 
 export function addRule() {
-    console.log('adding rule');
   return {
     type: ADD_RULE,
     ruleKey: createRandomKey()

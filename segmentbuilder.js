@@ -6,25 +6,27 @@ import { render } from 'react-dom'
 import configureStore from './store/configureStore'
 
 
-const store = configureStore({
+// const store = configureStore({
 
-      ruleTypes: [
-        { id: 'email', name: 'Email Address' },
-        { id: 'location', name: 'Location' }
-      ],
-      ruleQualifiersForType: {
-        'email': [
-          { id: 'equals', name: 'Equals' },
-          { id: 'contains', name: 'Contains' }
-        ],
-        'location': [
-          { id: 'known', name: 'Is known' },
-          { id: 'unknown', name: 'Is unknown' }
-        ]
-      },
-      rules: {}
+//       ruleTypes: [
+//         { id: 'email', name: 'Email Address' },
+//         { id: 'location', name: 'Location' }
+//       ],
+//       ruleQualifiersForType: {
+//         'email': [
+//           { id: 'equals', name: 'Equals' },
+//           { id: 'contains', name: 'Contains' }
+//         ],
+//         'location': [
+//           { id: 'known', name: 'Is known' },
+//           { id: 'unknown', name: 'Is unknown' }
+//         ]
+//       },
+//       rules: {}
 
-});
+// });
+//
+const store = configureStore([]);
 
 render(
   <Provider store={store}>

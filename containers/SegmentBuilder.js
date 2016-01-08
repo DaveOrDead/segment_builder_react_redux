@@ -5,41 +5,47 @@ import { connect } from 'react-redux'
 import * as SegmentBuilderActions from '../actions/segmentbuilder'
 import { bindActionCreators } from 'redux'
 
-
-
-class SegmentBuilder extends Component {
-  render() {
-    const { rules, actions } = this.props;
-    console.log(rules);
-    return <section>
-      { Object.keys(rules).map( (ruleKey) => <RuleBuilder key={ruleKey} ruleKey={ruleKey} rule={rules[ruleKey]} /> ) }
-      <Button text=" OR... " handleClick={ actions.addRule } />
-    </section>
-  }
-}
-
-// SegmentBuilder.propTypes = {
-//   rules: PropTypes.object.isRequired,
-//   dispatch: PropTypes.func.isRequired
-// };
-
-// SegmentBuilder.contextTypes = {
-//     dispatch: ProtoTypes.func
-// };
-
-function mapStateToProps(state) {
-    console.log('howdy');
-    console.log(state.rules);
-  return {
-    rules: state.rules
-  };
+function mapStateToProps(rules) {
+    console.log('map state rules = ', rules);
+    return {
+        rules: rules
+    };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(SegmentBuilderActions, dispatch)
-    // dispatch: dispatch
-    };
+    }
 }
+
+class SegmentBuilder extends Component {
+
+    render() {
+        const { rules, actions } = this.props;
+        console.log('rules = ', rules);
+
+        return (
+            <section>
+
+                <div>Added { rules.length } rules</div>
+
+                { rules.map( (rule) =>
+
+                    // <RuleBuilder key={ruleKey} ruleKey={ruleKey} rule={rules[ruleKey]} />
+                    <div>{rule.ruleTypeId}</div>
+
+                )}
+
+                <button onClick={ actions.addRule } >Create Rule</button>
+
+            </section>
+        )
+    }
+}
+
+SegmentBuilder.propTypes = {
+  rules: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired // formerly dispatch: and func
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SegmentBuilder);

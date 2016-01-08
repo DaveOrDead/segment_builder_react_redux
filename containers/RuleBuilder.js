@@ -38,7 +38,7 @@ RuleBuilder.propTypes = {
 function mapStateToProps(state) {
     return {
         ruleTypes: state.ruleTypes,
-        ruleQualifiersForType: store.ruleQualifiersForType
+        ruleQualifiersForType: state.ruleQualifiersForType
     };
 }
 
