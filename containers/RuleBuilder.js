@@ -15,11 +15,11 @@ class RuleBuilder extends Component {
             <section>
                 <Dropdown items={ruleTypes} selectedId={rule.ruleTypeId} handleSelectionChanged={ (ruleType) => actions.setRuleType(ruleKey, ruleType.Id) } />
 
-                <Dropdown items={ruleQualifiersForType[rule.ruleTypeId]} selectedId={rule.ruleQualifierId} handleSelectionChanged={ (ruleQualifier) => actions.setRuleQualifier(ruleKey, ruleQualifier.Id) } />
+                // <Dropdown items={ruleQualifiersForType[rule.ruleTypeId]} selectedId={rule.ruleQualifierId} handleSelectionChanged={ (ruleQualifier) => actions.setRuleQualifier(ruleKey, ruleQualifier.Id) } />
 
-                <Textbox value={rule.ruleCriteria} handleChange={(ruleCriteria) => actions.setRuleQualifier(ruleKey, ruleCriteria.Id) } />
+               //<Textbox value={rule.ruleCriteria} handleChange={(ruleCriteria) => actions.setRuleQualifier(ruleKey, ruleCriteria.Id) } />
 
-                <Button text="Remove" handleClick={() => actions.removeRule(key)} />
+                // <Button text="Remove" handleClick={() => actions.removeRule(key)} />
 
             </section>
         )

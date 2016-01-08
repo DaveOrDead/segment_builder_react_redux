@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 import * as SegmentBuilderActions from '../actions/segmentbuilder'
 import { bindActionCreators } from 'redux'
 
-function mapStateToProps(rules) {
-    console.log('map state rules = ', rules);
+function mapStateToProps(state) {
+    console.log('state = ', state);
     return {
-        rules: rules
+        rules: state.rules
     };
 }
 
@@ -31,8 +31,7 @@ class SegmentBuilder extends Component {
 
                 { rules.map( (rule) =>
 
-                    // <RuleBuilder key={ruleKey} ruleKey={ruleKey} rule={rules[ruleKey]} />
-                    <div>{rule.ruleTypeId}</div>
+                    <RuleBuilder key={rule.ruleTypeId} ruleKey={rule.ruleQualifierId} rule={rule} />
 
                 )}
 
