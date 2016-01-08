@@ -5,34 +5,34 @@ export const REMOVE_RULE        = 'REMOVE RULE'
 export const ADD_RULE           = 'ADD RULE'
 
 
-export function setRuleType(ruleKey, ruleTypeId) {
+export function setRuleType(ruleId, ruleTypeId) {
   return {
     type: SET_RULE_TYPE,
-    ruleKey,
+    ruleId,
     ruleTypeId
   }
 }
 
-export function setRuleCriteria(ruleKey, ruleCriteriaId) {
+export function setRuleCriteria(ruleId, ruleCriteriaId) {
   return {
     type: SET_RULE_CRITERIA,
-    ruleKey,
+    ruleId,
     ruleCriteriaId
   }
 }
 
-export function setRuleQualifier(ruleKey, ruleQualifierId) {
+export function setRuleQualifier(ruleId, ruleQualifierId) {
   return {
     type: SET_RULE_QUALIFIER,
-    ruleKey,
+    ruleId,
     ruleQualifierId
   }
 }
 
-export function removeRule(ruleKey) {
+export function removeRule(ruleId) {
   return {
     type: REMOVE_RULE,
-    ruleKey
+    ruleId
   }
 }
 

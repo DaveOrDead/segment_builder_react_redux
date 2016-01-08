@@ -9,15 +9,15 @@ import { bindActionCreators } from 'redux'
 class RuleBuilder extends Component {
     render() {
 
-        const { ruleKey, rule, ruleTypes, ruleQualifiersForType, dispatch, actions } = this.props;
+        const { rule, ruleTypes, ruleQualifiersForType, dispatch, actions } = this.props;
 
         return (
             <section>
-                <Dropdown items={ruleTypes} selectedId={rule.ruleTypeId} handleSelectionChanged={ (ruleType) => actions.setRuleType(ruleKey, ruleType.Id) } />
+                <Dropdown items={ruleTypes} selectedId={rule.ruleTypeId} handleSelectionChanged={ (ruleType) => actions.setRuleType(rule.id, ruleType.id) } />
 
-                <Dropdown items={ruleQualifiersForType[rule.ruleTypeId]} selectedId={rule.ruleQualifierId} handleSelectionChanged={ (ruleQualifier) => actions.setRuleQualifier(ruleKey, ruleQualifier.Id) } />
+                <Dropdown items={ruleQualifiersForType[rule.ruleTypeId]} selectedId={rule.ruleQualifierId} handleSelectionChanged={ (ruleQualifier) => actions.setRuleQualifier(rule.id, ruleQualifier.Id) } />
 
-               <Textbox value={rule.ruleCriteria} handleChange={(ruleCriteria) => actions.setRuleQualifier(ruleKey, ruleCriteria.Id) } />
+               <Textbox value={rule.ruleCriteria} handleChange={(ruleCriteria) => actions.setRuleQualifier(rule.id, ruleCriteria.Id) } />
 
                 <Button text="Remove" handleClick={() => actions.removeRule(key)} />
 
@@ -27,11 +27,10 @@ class RuleBuilder extends Component {
 }
 
 RuleBuilder.propTypes = {
-    ruleKey: PropTypes.string.isRequired,
     rule: PropTypes.shape({
-    ruleTypeId: PropTypes.string.isRequired,
-    ruleQualifierId: PropTypes.string.isRequired,
-    ruleCriteria: PropTypes.any.isRequired
+        ruleTypeId: PropTypes.string.isRequired,
+        ruleQualifierId: PropTypes.string,
+        ruleCriteria: PropTypes.any
     }).isRequired
 };
 

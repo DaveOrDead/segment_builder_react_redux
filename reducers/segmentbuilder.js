@@ -3,17 +3,18 @@ import { SET_RULE_TYPE, SET_RULE_CRITERIA, SET_RULE_QUALIFIER, REMOVE_RULE, ADD_
 const initialState = {
 
     ruleTypes: [
-        { id: 'email', name: 'Email Address' },
-        { id: 'location', name: 'Location' }
+        { id: 'default', name: 'Define a rule based on...', isEnabled: false, isDefault: true},
+        { id: 'email', name: 'Email Address', isEnabled: true, isDefault: false},
+        { id: 'location', name: 'Location', isEnabled: true, isDefault: false}
     ],
     ruleQualifiersForType: {
         'email': [
-            { id: 'equals', name: 'Equals' },
-            { id: 'contains', name: 'Contains' }
+            { id: 'equals', name: 'Equals',  isEnabled: true, isDefault: false},
+            { id: 'contains', name: 'Contains',  isEnabled: true, isDefault: true}
         ],
         'location': [
-            { id: 'known', name: 'Is known' },
-            { id: 'unknown', name: 'Is unknown' }
+            { id: 'known', name: 'Is known',  isEnabled: true, isDefault: true },
+            { id: 'unknown', name: 'Is unknown',  isEnabled: true, isDefault: false }
         ]
     },
     rules: []
@@ -24,7 +25,7 @@ export default function segmentBuilder(state = initialState, action) {
 
     switch(action.type) {
         case ADD_RULE:
-
+        console.log('action = ', action)
         var ruleTypeId = action.ruleTypeId || state.ruleTypes[0].id;
         var ruleQualifierId = action.ruleQualifierId || state.ruleQualifiersForType[ruleTypeId][0].id;
         var ruleCriteria = action.ruleCriteria || '';

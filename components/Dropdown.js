@@ -3,12 +3,11 @@ import React, { Component, PropTypes } from 'react'
 class Dropdown extends Component {
   render() {
 
-    const { items, selectedId, getId, getName } = this.props;
+    const { items, selectedId, defaultValue } = this.props;
 
-    return <select onChange={(event) => this.change(event)} value={selectedId}>
-        <option value="-1" disabled>Define a rule based on...</option>
+    return <select onChange={(event) => this.change(event)} value={selectedId} defaultValue={defaultValue} >
       { items.map((item) =>
-          <option key={getId(item)} value={getId(item)}>{getName(item)}</option>
+          <option key={item.id} value={item.id } disabled={!item.isEnabled}>{ item.name }</option>
         ) }
     </select>;
   }
@@ -27,16 +26,12 @@ class Dropdown extends Component {
 Dropdown.propTypes = {
   items: PropTypes.array,
   selectedId: PropTypes.string,
-  getId: PropTypes.func,
-  getName: PropTypes.func,
   handleSelectionChanged: PropTypes.func
 };
 
 Dropdown.defaultProps = {
   items: [],
   selectedId: undefined,
-  getId: function (item) { return item.id; },
-  getName: function (item) { return item.name; },
   handleSelectionChanged: function(item) { /* NOOP */ }
 };
 
