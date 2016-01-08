@@ -1,6 +1,6 @@
-function createRandomKey() {
-  return new Date().toJSON();
-}
+// function createRandomKey() {
+//   return new Date().toJSON();
+// }
 
 export const SET_RULE_TYPE      = 'SET RULE TYPE'
 export const SET_RULE_CRITERIA  = 'SET RULE CRITERIA'
@@ -42,8 +42,8 @@ export function removeRule(ruleKey) {
 
 export function addRule() {
   return {
-    type: ADD_RULE,
-    ruleKey: createRandomKey()
+    type: ADD_RULE
+    // ruleKey: createRandomKey()
   }
 }
 

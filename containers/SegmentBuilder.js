@@ -31,7 +31,7 @@ class SegmentBuilder extends Component {
 
                 { rules.map( (rule) =>
 
-                    <RuleBuilder key={rule.ruleTypeId} ruleKey={rule.ruleQualifierId} rule={rule} />
+                    <RuleBuilder key={rule.id} ruleKey={rule.ruleQualifierId} rule={rule} />
 
                 )}
 
@@ -43,8 +43,8 @@ class SegmentBuilder extends Component {
 }
 
 SegmentBuilder.propTypes = {
-  rules: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired // formerly dispatch: and func
+    rules: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SegmentBuilder);
