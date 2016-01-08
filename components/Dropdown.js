@@ -2,8 +2,11 @@ import React, { Component, PropTypes } from 'react'
 
 class Dropdown extends Component {
   render() {
+
     const { items, selectedId, getId, getName } = this.props;
+
     return <select onChange={(event) => this.change(event)} value={selectedId}>
+        <option value="-1" disabled>Define a rule based on...</option>
       { items.map((item) =>
           <option key={getId(item)} value={getId(item)}>{getName(item)}</option>
         ) }

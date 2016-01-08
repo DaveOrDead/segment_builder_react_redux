@@ -1,3 +1,4 @@
+import Dropdown from '../components/Dropdown'
 import Button from '../components/Button'
 import RuleBuilder from './RuleBuilder'
 import React, { Component, PropTypes } from 'react'
@@ -5,29 +6,40 @@ import { connect } from 'react-redux'
 import * as SegmentBuilderActions from '../actions/segmentbuilder'
 import { bindActionCreators } from 'redux'
 
+
 function mapStateToProps(state) {
-    console.log('state = ', state);
+
     return {
-        rules: state.rules
+        rules: state.rules,
+        ruleTypes: state.ruleTypes
     };
 }
 
+
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(SegmentBuilderActions, dispatch)
+    return {
+        actions: bindActionCreators(SegmentBuilderActions, dispatch)
     }
 }
+
 
 class SegmentBuilder extends Component {
 
     render() {
-        const { rules, actions } = this.props;
-        console.log('rules = ', rules);
+
+        const { rules, actions, ruleTypes } = this.props;
+        let element;
+
+        if(rules.length === 0) {
+
+            element = (
+                <Dropdown items={ruleTypes} selectedId="-1" handleSelectionChanged={ (ruleType) => actions.addRule(ruleType.Id) } />
+                )
+            }
 
         return (
-            <section>
 
-                <div>Added { rules.length } rules</div>
+            <section>
 
                 { rules.map( (rule) =>
 
@@ -35,7 +47,8 @@ class SegmentBuilder extends Component {
 
                 )}
 
-                <button onClick={ actions.addRule } >Create Rule</button>
+               { element }
+
 
             </section>
         )

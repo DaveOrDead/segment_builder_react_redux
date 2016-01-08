@@ -1,7 +1,3 @@
-// function createRandomKey() {
-//   return new Date().toJSON();
-// }
-
 export const SET_RULE_TYPE      = 'SET RULE TYPE'
 export const SET_RULE_CRITERIA  = 'SET RULE CRITERIA'
 export const SET_RULE_QUALIFIER = 'SET RULE QUALIFIER'
@@ -40,10 +36,10 @@ export function removeRule(ruleKey) {
   }
 }
 
-export function addRule() {
+export function addRule(ruleTypeId) {
   return {
-    type: ADD_RULE
-    // ruleKey: createRandomKey()
+    type: ADD_RULE,
+    ruleTypeId: ruleTypeId
   }
 }
 
