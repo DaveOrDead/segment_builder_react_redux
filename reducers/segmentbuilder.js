@@ -3,18 +3,27 @@ import { SET_RULE_TYPE, SET_RULE_CRITERIA, SET_RULE_QUALIFIER, REMOVE_RULE, ADD_
 const initialState = {
 
     ruleTypes: [
-        { id: 'default', name: 'Define a rule based on...', isEnabled: false, isDefault: true},
-        { id: 'email', name: 'Email Address', isEnabled: true, isDefault: false},
-        { id: 'location', name: 'Location', isEnabled: true, isDefault: false}
+        { id: 'default', name: 'Define a rule based on...', isDisabled: true, isDefault: true},
+        { id: 'email', name: 'Email Address'},
+        { id: 'location', name: 'Location'}
     ],
     ruleQualifiersForType: {
         'email': [
-            { id: 'equals', name: 'Equals',  isEnabled: true, isDefault: false},
-            { id: 'contains', name: 'Contains',  isEnabled: true, isDefault: true}
+            { id: 'contains', name: 'contains', isDefault: true, valueControlType: 'textField'},
+            { id: 'DoesNotContain', name: 'does not contain' , valueControlType: 'textField'} ,
+            { id: 'MatchesExactly', name: 'matches exactly', valueControlType: 'textField'},
+            { id: 'DoesNotMatchExactly', name: 'does not match exactly', valueControlType: 'textField'},
+            { id: 'StartsWith', name: 'starts with' , valueControlType: 'textField'} ,
+            { id: 'DoesNotStartWith', name: 'does not start with', valueControlType: 'textField'},
+            { id: 'EndsWith', name: 'ends with', valueControlType: 'textField' },
+            { id: 'DoesNotEndWith', name: 'does not end with', valueControlType: 'textField' }
         ],
         'location': [
-            { id: 'known', name: 'Is known',  isEnabled: true, isDefault: true },
-            { id: 'unknown', name: 'Is unknown',  isEnabled: true, isDefault: false }
+            { id: "IsKnown", name: "is known", isDefault: true, valueControlType: 'none' },
+            { id: "IsNotKnown", name: "is not known", valueControlType: 'none' },
+            { id: "IsNear", name: "is near", valueControlType: 'vicinitySelector' },
+            { id: "IsIn", name: "is in", valueControlType: 'vicinitySelector' },
+            { id: "IsNotIn", name: "is not in", valueControlType: 'vicinitySelector' }
         ]
     },
     rules: []
@@ -25,7 +34,7 @@ export default function segmentBuilder(state = initialState, action) {
 
     switch(action.type) {
         case ADD_RULE:
-        console.log('action = ', action)
+
         var ruleTypeId = action.ruleTypeId || state.ruleTypes[0].id;
         var ruleQualifierId = action.ruleQualifierId || state.ruleQualifiersForType[ruleTypeId][0].id;
         var ruleCriteria = action.ruleCriteria || '';
@@ -43,8 +52,12 @@ export default function segmentBuilder(state = initialState, action) {
         return Object.assign({}, state, {rules : newRules});
 
         case REMOVE_RULE:
-          delete state.rules[action.ruleKey];
-          return state;
+
+
+         var newRules = state.rules.filter(rule =>
+        rule.id !== action.ruleId
+      )
+        return Object.assign({}, state, {rules : newRules});
 
         case SET_RULE_TYPE:
 
