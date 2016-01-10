@@ -40,10 +40,7 @@ export default function segmentBuilder(state = initialState, action) {
         ...state.rules
     ];
 
-        const newState = Object.assign({}, state, {rules : newRules});
-
-        return newState;
-
+        return Object.assign({}, state, {rules : newRules});
 
         case REMOVE_RULE:
           delete state.rules[action.ruleKey];
@@ -51,13 +48,11 @@ export default function segmentBuilder(state = initialState, action) {
 
         case SET_RULE_TYPE:
 
-          state.rules[action.ruleKey] = {
-            ruleTypeId: action.ruleTypeId || state.ruleTypes[0].id,
-            ruleQualifierId: state.ruleQualifiersForType[ruleTypeId][0].id,
-            ruleCriteria: ''
-          };
+          var newRules = state.rules.map(rule =>
+            rule.id === action.ruleId ? Object.assign({}, rule, { ruleTypeId: action.ruleTypeId }) : rule)
 
-          return state;
+          return Object.assign({}, state, {rules : newRules});
+
 
         case SET_RULE_QUALIFIER:
           state.rules[action.ruleKey].ruleQualifierId = action.ruleQualifierId;
