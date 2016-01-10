@@ -17,9 +17,9 @@ class RuleBuilder extends Component {
 
                 <Dropdown items={ruleQualifiersForType[rule.ruleTypeId]} selectedId={rule.ruleQualifierId} handleSelectionChanged={ (ruleQualifier) => actions.setRuleQualifier(rule.id, ruleQualifier.Id) } />
 
-               <Textbox value={rule.ruleCriteria} handleChange={(ruleCriteria) => actions.setRuleQualifier(rule.id, ruleCriteria.Id) } />
+                <Textbox value={rule.ruleCriteria} handleChange={(ruleCriteria) => actions.setRuleQualifier(rule.id, ruleCriteria.Id) } />
 
-                <Button text="Remove" handleClick={() => actions.removeRule(key)} />
+                <Button text="Remove" handleClick={() => actions.removeRule(rule.id)} />
 
             </section>
         )

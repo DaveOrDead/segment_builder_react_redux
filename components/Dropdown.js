@@ -7,7 +7,7 @@ class Dropdown extends Component {
 
     return <select onChange={(event) => this.change(event)} value={selectedId} defaultValue={defaultValue} >
       { items.map((item) =>
-          <option key={item.id} value={item.id } disabled={!item.isEnabled}>{ item.name }</option>
+          <option key={item.id} value={item.id } disabled={item.isDisabled}>{ item.name }</option>
         ) }
     </select>;
   }
