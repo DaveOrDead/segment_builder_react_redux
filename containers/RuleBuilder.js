@@ -30,7 +30,7 @@ class RuleBuilder extends Component {
                 }
             }
 
-console.log(rule.disableAddOrRule );
+console.log('Add or rules' + rule.disableAddOrRule );
         return (
             <section>
 

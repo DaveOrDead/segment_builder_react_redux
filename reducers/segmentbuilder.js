@@ -22,7 +22,6 @@ const buildNewRules = (state, action, newProperties) => {
 
 export default function segmentBuilder(state = initialState, action) {
 
-
     switch(action.type) {
 
         case REMOVE_RULE:
@@ -30,7 +29,16 @@ export default function segmentBuilder(state = initialState, action) {
          var newRules = state.rules.filter(rule =>
             rule.id !== action.ruleId
         )
-        return Object.assign({}, state, {rules : newRules});
+
+         let updatedNewRules;
+
+         const numberOfNewRules = newRules.length;
+         if (numberOfNewRules > 0) {
+
+             updatedNewRules = newRules.map((rule, index) => index === numberOfNewRules - 1 ? Object.assign({}, rule, {disableAddOrRule: false}) : rule );
+         }
+
+        return Object.assign({}, state, {rules : updatedNewRules});
 
 
 
@@ -60,8 +68,6 @@ export default function segmentBuilder(state = initialState, action) {
         case ADD_OR_RULE:
 
             var newRules = buildNewRules(state, action, { disableAddOrRule: true });
-
-            console.log('added or rule');
 
         return Object.assign({}, state, {rules : newRules});
 
