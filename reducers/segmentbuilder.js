@@ -66,6 +66,14 @@ export default function segmentBuilder(state = initialState, action) {
 
           return Object.assign({}, state, {rules : newRules});
 
+          case SET_RULE_QUALIFIER:
+
+          console.log('reducer set new rule qualifier: '+ action.ruleQualifierId)
+          var newRules = state.rules.map(rule =>
+            rule.id === action.ruleId ? Object.assign({}, rule, { ruleQualifierId: action.ruleQualifierId }) : rule)
+
+          return Object.assign({}, state, {rules : newRules});
+
 
         case SET_RULE_QUALIFIER:
           state.rules[action.ruleKey].ruleQualifierId = action.ruleQualifierId;
