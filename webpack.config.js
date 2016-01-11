@@ -24,7 +24,15 @@ module.exports = {
         loaders: [ 'babel' ],
         exclude: /node_modules/,
         include: __dirname
-      }
+      },
+      { test: /\.css$/, loader: "style!css" },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+            'url?limit=8192',
+            '_assets/css/images'
+        ]
+    },
     ]
   }
 }
