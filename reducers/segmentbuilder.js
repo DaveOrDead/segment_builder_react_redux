@@ -27,15 +27,14 @@ export default function segmentBuilder(state = initialState, action) {
 
 
          var newRules = state.rules.filter(rule =>
-        rule.id !== action.ruleId
-      )
+            rule.id !== action.ruleId
+        )
         return Object.assign({}, state, {rules : newRules});
 
         case SET_RULE_TYPE:
 
 
           var defaultQualifierId = state.ruleQualifiersForType[action.ruleTypeId].filter(qualifier => qualifier.isDefault)[0].id
-
 
           var newRules = state.rules.map(rule =>
             rule.id === action.ruleId ? Object.assign({}, rule, { ruleTypeId: action.ruleTypeId, ruleQualifierId: defaultQualifierId }) : rule)
@@ -44,21 +43,11 @@ export default function segmentBuilder(state = initialState, action) {
 
           case SET_RULE_QUALIFIER:
 
-          console.log('reducer set new rule qualifier: ' + action.ruleQualifierId)
-
           var newRules = state.rules.map(rule =>
             rule.id === action.ruleId ? Object.assign({}, rule, { ruleQualifierId: action.ruleQualifierId }) : rule)
 
           return Object.assign({}, state, {rules : newRules});
 
-
-        case SET_RULE_QUALIFIER:
-          state.rules[action.ruleKey].ruleQualifierId = action.ruleQualifierId;
-          return state;
-
-        case SET_RULE_CRITERIA:
-          state.rules[action.ruleKey].ruleCriteria = action.ruleCriteria;
-          return state;
 
         default:
             return state;

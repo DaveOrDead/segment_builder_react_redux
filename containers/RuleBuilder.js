@@ -1,4 +1,5 @@
 import Button from '../components/Button'
+import ConditionButton from '../components/ConditionButton'
 import Dropdown from '../components/Dropdown'
 import Textbox from '../components/Textbox'
 import React, { Component, PropTypes } from 'react'
@@ -32,14 +33,22 @@ class RuleBuilder extends Component {
 
         return (
             <section>
-                <Dropdown items={ruleTypes} selectedId={rule.ruleTypeId} handleSelectionChanged={ (ruleType) => actions.setRuleType(rule.id, ruleType.id) } />
 
-                <Dropdown items={ruleQualifiersForType[rule.ruleTypeId]} selectedId={rule.ruleQualifierId} handleSelectionChanged={ (ruleQualifier) => actions.setRuleQualifier(rule.id, ruleQualifier.id) } />
+                <div>
+                    <Dropdown items={ruleTypes} selectedId={rule.ruleTypeId} handleSelectionChanged={ (ruleType) => actions.setRuleType(rule.id, ruleType.id) } />
+
+                    <Dropdown items={ruleQualifiersForType[rule.ruleTypeId]} selectedId={rule.ruleQualifierId} handleSelectionChanged={ (ruleQualifier) => actions.setRuleQualifier(rule.id, ruleQualifier.id) } />
 
 
-                { element }
+                    { element }
 
-                <Button text="Remove" handleClick={() => actions.removeRule(rule.id)} />
+                    <Button text="Remove" handleClick={() => actions.removeRule(rule.id)} />
+
+                    <ConditionButton text="Or" handleClick={() => actions.addRule(rule.ruleTypeId)} />
+
+                </div>
+
+                <ConditionButton text="And" handleClick={() => actions.addRule(rule.ruleTypeId)} />
 
             </section>
         )
