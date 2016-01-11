@@ -44,11 +44,11 @@ class RuleBuilder extends Component {
 
                     <Button text="Remove" handleClick={() => actions.removeRule(rule.id)} />
 
-                    <ConditionButton text="Or" handleClick={() => actions.addRule(rule.ruleTypeId)} />
+                    <ConditionButton text="Or" handleClick={() => actions.addOrRule(rule.ruleTypeId)} />
 
                 </div>
 
-                <ConditionButton text="And" handleClick={() => actions.addRule(rule.ruleTypeId)} />
+                <ConditionButton text="And" handleClick={() => actions.addAndRule(rule.ruleTypeId)} />
 
             </section>
         )

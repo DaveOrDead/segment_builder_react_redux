@@ -33,7 +33,7 @@ class SegmentBuilder extends Component {
         if(rules.length === 0) {
 
             element = (
-                <Dropdown items={ruleTypes} selectedId="0" defaultValue={ruleTypes[0].id} handleSelectionChanged={ (ruleType) => actions.addRule(ruleType.id) } />
+                <Dropdown items={ruleTypes} selectedId="0" defaultValue={ruleTypes[0].id} handleSelectionChanged={ (ruleType) => actions.addInitialRule(ruleType.id) } />
                 )
             }
 
