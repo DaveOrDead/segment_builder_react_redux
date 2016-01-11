@@ -2,8 +2,9 @@ import React, { Component, PropTypes } from 'react'
 
 class ConditionButton extends Component {
   render() {
-    const { text, handleClick } = this.props;
-    return <button className="condition-button" onClick={handleClick}>{text}</button>;
+    const { text, handleClick, isDisabled } = this.props;
+
+    return <button className="condition-button" disabled={isDisabled} onClick={handleClick}>{text}</button>;
   }
 }
 

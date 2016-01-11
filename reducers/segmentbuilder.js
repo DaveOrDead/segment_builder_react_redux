@@ -1,7 +1,7 @@
 import { SET_RULE_TYPE, SET_RULE_CRITERIA, SET_RULE_QUALIFIER, REMOVE_RULE, ADD_INITIAL_RULE, ADD_OR_RULE, ADD_AND_RULE } from '../actions/segmentbuilder'
 import { initialState } from '../data/segmentbuilderconfig'
 
-const buildNewRules = (state, action) => {
+const buildNewRules = (state, action, newProperties) => {
 
     let ruleTypeId = action.ruleTypeId || state.ruleTypes[0].id;
     let ruleQualifierId = action.ruleQualifierId || state.ruleQualifiersForType[ruleTypeId][0].id;
@@ -13,7 +13,8 @@ const buildNewRules = (state, action) => {
             id: ruleId,
             ruleTypeId,
             ruleQualifierId,
-            ruleCriteria
+            ruleCriteria,
+            ...newProperties
         },
         ...state.rules
     ];
@@ -53,17 +54,22 @@ export default function segmentBuilder(state = initialState, action) {
 
         case ADD_INITIAL_RULE:
             var newRules = buildNewRules(state, action);
-            console.log('added initial rule');
+
         return Object.assign({}, state, {rules : newRules});
 
         case ADD_OR_RULE:
-            var newRules = buildNewRules(state, action);
+
+            var newRules = buildNewRules(state, action, { disableAddOrRule: true });
+
             console.log('added or rule');
+
         return Object.assign({}, state, {rules : newRules});
 
         case ADD_AND_RULE:
-            var newRules = buildNewRules(state, action);
+
+            var newRules = buildNewRules(state, action, { disableAddAndRule: true });
             console.log('added and rule');
+
         return Object.assign({}, state, {rules : newRules});
 
 

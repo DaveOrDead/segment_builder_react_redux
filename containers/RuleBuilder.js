@@ -30,7 +30,7 @@ class RuleBuilder extends Component {
                 }
             }
 
-
+console.log(rule.disableAddOrRule );
         return (
             <section>
 
@@ -44,7 +44,7 @@ class RuleBuilder extends Component {
 
                     <Button text="Remove" handleClick={() => actions.removeRule(rule.id)} />
 
-                    <ConditionButton text="Or" handleClick={() => actions.addOrRule(rule.ruleTypeId)} />
+                    <ConditionButton text="Or" handleClick={() => actions.addOrRule(rule.ruleTypeId)} isDisabled={ rule.disableAddOrRule } />
 
                 </div>
 

@@ -12,7 +12,6 @@ body {
 
 .condition-button {
     background-color: #cce2ee;
-    background-image: linear-gradient(rgba(236,249,255,0),#c3ddeb);
     border: 1px solid;
     border-color: #abcee1 #94bace #7da6bd;
     padding: 5px 10px;
@@ -22,4 +21,13 @@ body {
     text-shadow: 0 1px 1px #FFF;
     -webkit-font-smoothing: antialiased;
     background-clip: padding-box;
+    cursor: pointer;
+}
+
+.condition-button[disabled] {
+    background-color: #CCC;
+    box-shadow: none;
+    border: 1px solid #AAA;
+    color: #777;
+    cursor: default;
 }
