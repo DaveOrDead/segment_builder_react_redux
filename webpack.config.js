@@ -30,7 +30,7 @@ module.exports = {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
             'url?limit=8192',
-            '_assets/css/images'
+            'img'
         ]
     },
     ]
