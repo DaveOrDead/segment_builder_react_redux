@@ -28,14 +28,6 @@ class SegmentBuilder extends Component {
     render() {
 
         const { ruleGroups, actions, ruleTypes } = this.props;
-        // let undefinedRuleDropdown;
-
-        // if(ruleGroups[ruleGroups.length - 1].Rules.length === 0) {
-
-        //     undefinedRuleDropdown = (
-                
-        //         )
-        //     }
 
         return (
 
