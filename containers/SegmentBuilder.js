@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux'
 function mapStateToProps(state) {
 
     return {
-        rules: state.RuleGroups[0].Rules,
+        ruleGroups: state.RuleGroups,
         ruleTypes: state.ruleTypes
     };
 }
@@ -27,10 +27,10 @@ class SegmentBuilder extends Component {
 
     render() {
 
-        const { rules, actions, ruleTypes } = this.props;
+        const { ruleGroups, actions, ruleTypes } = this.props;
         let element;
 
-        if(rules.length === 0) {
+        if(ruleGroups.length == 1 && ruleGroups[0].Rules.length === 0) {
 
             element = (
                 <Dropdown items={ruleTypes} defaultValue={ruleTypes[0].id} handleSelectionChanged={ (ruleType) => actions.addInitialRule(ruleType.id, 0) } />
@@ -40,12 +40,14 @@ class SegmentBuilder extends Component {
         return (
 
             <section>
-
-                { rules.map( (rule) =>
+                
+                {   
+                    ruleGroups.map((group) =>
+                    group.Rules.map( (rule) =>
 
                     <RuleBuilder key={rule.id} rule={rule} />
 
-                )}
+                ))}
 
                { element }
 
@@ -56,7 +58,7 @@ class SegmentBuilder extends Component {
 }
 
 SegmentBuilder.propTypes = {
-    rules: PropTypes.array.isRequired,
+    ruleGroups: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 };
 
