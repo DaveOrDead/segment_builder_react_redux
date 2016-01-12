@@ -25,9 +25,8 @@ class RuleBuilder extends Component {
 
             if(valueControl === 'textField') {
                 valueControlElement = <Textbox value={rule.ruleCriteria} handleChange={(ruleCriteria) => actions.setRuleQualifier(rule.id, ruleCriteria.Id, 0) } />;
-                }
-                else if (valueControl === 'vicinitySelector'){
-                valueControlElement = <input type="search" placeholder="I am a search!!!" />;
+                } else if (valueControl === 'vicinitySelector'){
+                    valueControlElement = <input type="search" placeholder="I am a search!!!" />;
                 }
             }
 
@@ -47,7 +46,7 @@ class RuleBuilder extends Component {
 
                     <Button text="Remove" handleClick={() => actions.removeRule(rule.id, 0)} />
 
-                    <ConditionButton text="Or" handleClick={() => actions.initOrRule(0)} isHidden={ !rule.ruleQualifierId } isDisabled={ rule.disableAddOrRule, 0 } />
+                    <ConditionButton text="Or" handleClick={() => actions.initOrRule(0)} isHidden={ !rule.ruleQualifierId } isDisabled={ rule.disableAddOrRule } />
 
                 </div>
 
