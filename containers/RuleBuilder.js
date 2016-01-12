@@ -30,7 +30,7 @@ class RuleBuilder extends Component {
                 }
             }
 
-        console.log('Should disable or rule button: ' + rule.disableAddOrRule );
+        console.log('Rule group index: ' + rule.ruleGroupIndex );
 
         return (
             <section>
@@ -44,7 +44,7 @@ class RuleBuilder extends Component {
 
                     { valueControlElement }
 
-                    <Button text="Remove" handleClick={() => actions.removeRule(rule.id, 0)} />
+                    <Button text="Remove" handleClick={() => actions.removeRule(rule.id, rule.ruleGroupIndex)} />
 
                     <ConditionButton text="Or" handleClick={() => actions.initOrRule(0)} isHidden={ !rule.ruleQualifierId } isDisabled={ rule.disableAddOrRule } />
 
