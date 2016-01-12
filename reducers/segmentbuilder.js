@@ -22,6 +22,10 @@ const buildNewRules = (state, action, newProperties) => {
 
 export default function segmentBuilder(state = initialState, action) {
 
+let updatedNewRules;
+let numberOfNewRules;
+
+
     switch(action.type) {
 
         case REMOVE_RULE:
@@ -30,9 +34,7 @@ export default function segmentBuilder(state = initialState, action) {
             rule.id !== action.ruleId
         )
 
-         let updatedNewRules;
-
-         const numberOfNewRules = newRules.length;
+         numberOfNewRules = newRules.length;
          if (numberOfNewRules > 0) {
 
              updatedNewRules = newRules.map((rule, index) => index === numberOfNewRules - 1 ? Object.assign({}, rule, {disableAddOrRule: false}) : rule );
@@ -46,7 +48,7 @@ export default function segmentBuilder(state = initialState, action) {
 
           var defaultQualifierId = state.ruleQualifiersForType[action.ruleTypeId].filter(qualifier => qualifier.isDefault)[0].id
 
-          var newRules = state.rules.map(rule =>
+          let newRules = state.rules.map(rule =>
             rule.id === action.ruleId ? Object.assign({}, rule, { ruleTypeId: action.ruleTypeId, ruleQualifierId: defaultQualifierId }) : rule)
 
           return Object.assign({}, state, {rules : newRules});
@@ -67,9 +69,13 @@ export default function segmentBuilder(state = initialState, action) {
 
         case INIT_OR_RULE:
         console.log('init the or rule!');
-        var newRules = buildNewRules(state, action, { disableAddAndRule: true });
+        var newRules = buildNewRules(state, action);
 
-        return Object.assign({}, state, {rules: newRules});
+        numberOfNewRules = newRules.length;
+        updatedNewRules = newRules.map((rule, index) => index === numberOfNewRules - 2 ? Object.assign({}, rule, {disableAddOrRule: true}) : rule );
+
+
+        return Object.assign({}, state, {rules: updatedNewRules});
 
         case INIT_AND_RULE:
 
