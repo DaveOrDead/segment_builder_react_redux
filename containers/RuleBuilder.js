@@ -31,7 +31,7 @@ class RuleBuilder extends Component {
                 }
             }
 
-console.log('Add or rules' + rule.disableAddOrRule );
+        console.log('Should disable or rule button: ' + rule.disableAddOrRule );
 
         return (
             <section>
