@@ -45,7 +45,7 @@ class RuleBuilder extends Component {
 
                 <Button text="Remove" handleClick={() => actions.removeRule(rule.id, rule.ruleGroupIndex)} />
 
-                <ConditionButton text="Or" handleClick={() => actions.initOrRule(rule.ruleGroupIndex)} isHidden={ !rule.ruleQualifierId } isDisabled={ rule.disableAddOrRule } />
+                <ConditionButton text="Or" handleClick={() => actions.addRule(rule.ruleGroupIndex)} isHidden={ !rule.ruleQualifierId } isDisabled={ rule.disableAddOrRule } />
 
             </div>
 

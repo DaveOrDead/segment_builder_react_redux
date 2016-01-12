@@ -53,7 +53,7 @@ class SegmentBuilder extends Component {
                                 
                                 )
                             }
-                                <ConditionButton text="And" isHidden={group.Rules.length === 0} isDisabled={groupIndex !== ruleGroups.length - 1} handleClick={() => actions.initAndRule(groupIndex)} />
+                                <ConditionButton text="And" isHidden={group.Rules.length === 0} isDisabled={groupIndex !== ruleGroups.length - 1} handleClick={() => actions.addRuleGroup(groupIndex)} />
                             </div>
                         )
                     }
