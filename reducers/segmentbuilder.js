@@ -92,7 +92,7 @@ export default function segmentBuilder(state = initialState, action) {
 
         case ADD_INITIAL_RULE:
 
-            var newRules = buildNewRulesAfterInitialRuleAddition(state, action);
+            newRules = buildNewRulesAfterInitialRuleAddition(state, action);
 
             return Object.assign({}, state, {RuleGroups : buildNewRuleGroups(state, action, newRules)});
 
@@ -108,7 +108,7 @@ export default function segmentBuilder(state = initialState, action) {
 
         case ADD_RULE_GROUP:
 
-            newRuleGroups = [
+            let newRuleGroups = [
                 ...state.RuleGroups,
                 { Rules: [] }];
 

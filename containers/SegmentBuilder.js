@@ -28,14 +28,14 @@ class SegmentBuilder extends Component {
     render() {
 
         const { ruleGroups, actions, ruleTypes } = this.props;
-        let undefinedRuleDropdown;
+        // let undefinedRuleDropdown;
 
-        if(ruleGroups[ruleGroups.length - 1].Rules.length === 0) {
+        // if(ruleGroups[ruleGroups.length - 1].Rules.length === 0) {
 
-            undefinedRuleDropdown = (
-                <Dropdown items={ruleTypes} defaultValue={ruleTypes[0].id} handleSelectionChanged={ (ruleType) => actions.addInitialRule(ruleType.id, ruleGroups.length - 1) } />
-                )
-            }
+        //     undefinedRuleDropdown = (
+                
+        //         )
+        //     }
 
         return (
 
@@ -59,7 +59,7 @@ class SegmentBuilder extends Component {
                     }
                 )}
 
-               { undefinedRuleDropdown }
+               <Dropdown items={ruleTypes} defaultValue={ruleTypes[0].id} handleSelectionChanged={ (ruleType) => actions.addInitialRule(ruleType.id, ruleGroups.length - 1) } isHidden = {ruleGroups[ruleGroups.length - 1].Rules.length !== 0} />
 
 
             </section>
