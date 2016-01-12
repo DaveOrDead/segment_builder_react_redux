@@ -39,15 +39,24 @@ class SegmentBuilder extends Component {
 
         return (
 
-            <section>
+            <section className="container">
                 
                 {   
-                    ruleGroups.map((group) =>
-                    group.Rules.map( (rule) =>
-
-                    <RuleBuilder key={rule.id} rule={rule} />
-
-                ))}
+                    ruleGroups.map((group) => 
+                    {
+                       return (
+                            <div key={group} className="group-container"> {
+                            
+                                group.Rules.map((rule) => 
+                            
+                                    <RuleBuilder key={rule.id} rule={rule} />
+                                
+                                )
+                            }
+                            </div>
+                        )
+                    }
+                )}
 
                { element }
 

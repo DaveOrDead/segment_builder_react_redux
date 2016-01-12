@@ -33,9 +33,9 @@ class RuleBuilder extends Component {
         console.log('Rule group index: ' + rule.ruleGroupIndex );
 
         return (
-            <section>
+            <div>
 
-                <div>
+                <div className="rule-row">
 
                     <Dropdown items={ruleTypes} defaultValue={ruleTypes[0].id} selectedId={rule.ruleTypeId} handleSelectionChanged={ (ruleType) => actions.setRuleType(rule.id, ruleType.id, 0) } />
 
@@ -52,7 +52,7 @@ class RuleBuilder extends Component {
 
                 <ConditionButton text="And" handleClick={() => actions.initAndRule(0)} />
 
-            </section>
+            </div>
         )
     }
 }

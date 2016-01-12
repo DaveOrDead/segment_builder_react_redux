@@ -65,8 +65,10 @@ let newRuleGroups = [];
               var newRules = state.RuleGroups[action.ruleGroupIndex].Rules.map(rule =>
               rule.id === action.ruleId ? Object.assign({}, rule, { ruleQualifierId: action.ruleQualifierId }) : rule)
 
-              return Object.assign({}, state, {rules : newRules});
+               newRuleGroups = state.RuleGroups.map((ruleGroup, index) => action.ruleGroupIndex === index ? Object.assign({}, ruleGroup, {Rules : newRules}) : ruleGroup);
 
+              return Object.assign({}, state, {RuleGroups : newRuleGroups});
+              
         case ADD_INITIAL_RULE:
 
             var newRules = buildNewRules(state, action);
