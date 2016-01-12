@@ -1,22 +1,22 @@
-import { SET_RULE_TYPE, SET_RULE_CRITERIA, SET_RULE_QUALIFIER, REMOVE_RULE, ADD_INITIAL_RULE, ADD_OR_RULE, ADD_AND_RULE } from '../actions/segmentbuilder'
+import { SET_RULE_TYPE, SET_RULE_CRITERIA, SET_RULE_QUALIFIER, REMOVE_RULE, ADD_INITIAL_RULE, INIT_OR_RULE, INIT_AND_RULE } from '../actions/segmentbuilder'
 import { initialState } from '../data/segmentbuilderconfig'
 
 const buildNewRules = (state, action, newProperties) => {
 
     let ruleTypeId = action.ruleTypeId || state.ruleTypes[0].id;
-    let ruleQualifierId = action.ruleQualifierId || state.ruleQualifiersForType[ruleTypeId][0].id;
+    let ruleQualifierId = ruleTypeId !== 'default' ? action.ruleQualifierId || state.ruleQualifiersForType[ruleTypeId][0].id : null;
     let ruleCriteria = action.ruleCriteria || '';
     let ruleId = (state.rules.reduce((maxId, rule) => Math.max(rule.id, maxId), -1) + 1).toString();
 
      return [
+        ...state.rules,
         {
             id: ruleId,
             ruleTypeId,
             ruleQualifierId,
             ruleCriteria,
             ...newProperties
-        },
-        ...state.rules
+        }
     ];
 }
 
@@ -65,18 +65,18 @@ export default function segmentBuilder(state = initialState, action) {
 
         return Object.assign({}, state, {rules : newRules});
 
-        case ADD_OR_RULE:
+        case INIT_OR_RULE:
+        console.log('init the or rule!');
+        var newRules = buildNewRules(state, action, { disableAddAndRule: true });
 
-            var newRules = buildNewRules(state, action, { disableAddOrRule: true });
+        return Object.assign({}, state, {rules: newRules});
 
-        return Object.assign({}, state, {rules : newRules});
+        case INIT_AND_RULE:
 
-        case ADD_AND_RULE:
-
-            var newRules = buildNewRules(state, action, { disableAddAndRule: true });
+           // var newRules = buildNewRules(state, action, { disableAddAndRule: true });
             console.log('added and rule');
 
-        return Object.assign({}, state, {rules : newRules});
+        return Object.assign({}, state, {initAndRule: true});
 
 
         default:

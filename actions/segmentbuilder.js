@@ -3,8 +3,8 @@ export const SET_RULE_CRITERIA  = 'SET RULE CRITERIA'
 export const SET_RULE_QUALIFIER = 'SET RULE QUALIFIER'
 export const REMOVE_RULE        = 'REMOVE RULE'
 export const ADD_INITIAL_RULE   = 'ADD INITIAL RULE'
-export const ADD_AND_RULE       = 'ADD AND RULE'
-export const ADD_OR_RULE        = 'ADD OR RULE'
+export const INIT_AND_RULE       = 'INIT AND RULE'
+export const INIT_OR_RULE       = 'INIT OR RULE'
 
 
 export function setRuleType(ruleId, ruleTypeId) {
@@ -37,17 +37,15 @@ export function addInitialRule(ruleTypeId) {
   }
 }
 
-export function addOrRule(ruleTypeId) {
+export function initOrRule() {
   return {
-    type: ADD_OR_RULE,
-    ruleTypeId: ruleTypeId
+    type: INIT_OR_RULE
   }
 }
 
-  export function addAndRule(ruleTypeId) {
+  export function initAndRule() {
   return {
-    type: ADD_AND_RULE,
-    ruleTypeId: ruleTypeId
+    type: INIT_AND_RULE
   }
 }
 

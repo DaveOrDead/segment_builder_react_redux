@@ -3,9 +3,9 @@ import React, { Component, PropTypes } from 'react'
 class Dropdown extends Component {
   render() {
 
-    const { items, selectedId, defaultValue } = this.props;
+    const { items, selectedId, defaultValue, isHidden } = this.props;
 
-    return <select onChange={(event) => this.change(event)} value={selectedId} defaultValue={defaultValue} >
+    return <select onChange={(event) => this.change(event)} value={selectedId} defaultValue={defaultValue} hidden={ isHidden }>
       { items.map((item) =>
           <option key={item.id} value={item.id } disabled={item.isDisabled}>{ item.name }</option>
         ) }
