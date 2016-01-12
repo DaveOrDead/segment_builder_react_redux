@@ -6,10 +6,10 @@ const buildNewRules = (state, action, newProperties) => {
     let ruleTypeId = action.ruleTypeId || state.ruleTypes[0].id;
     let ruleQualifierId = ruleTypeId !== 'default' ? action.ruleQualifierId || state.ruleQualifiersForType[ruleTypeId][0].id : null;
     let ruleCriteria = action.ruleCriteria || '';
-    let ruleId = (state.rules.reduce((maxId, rule) => Math.max(rule.id, maxId), -1) + 1).toString();
+    let ruleId = (state.RuleGroups[0].Rules.reduce((maxId, rule) => Math.max(rule.id, maxId), -1) + 1).toString();
 
      return [
-        ...state.rules,
+        ...state.RuleGroups[0].Rules,
         {
             id: ruleId,
             ruleTypeId,
@@ -24,13 +24,14 @@ export default function segmentBuilder(state = initialState, action) {
 
 let updatedNewRules;
 let numberOfNewRules;
+let newRuleGroups;
 
 
     switch(action.type) {
 
         case REMOVE_RULE:
 
-         var newRules = state.rules.filter(rule =>
+         var newRules = state.RuleGroups[0].Rules.filter(rule =>
             rule.id !== action.ruleId
         )
 
@@ -46,36 +47,44 @@ let numberOfNewRules;
 
         case SET_RULE_TYPE:
 
+            console.log('hello from set rule type');
           var defaultQualifierId = state.ruleQualifiersForType[action.ruleTypeId].filter(qualifier => qualifier.isDefault)[0].id
 
-          let newRules = state.rules.map(rule =>
+          let newRules = state.RuleGroups[0].Rules.map(rule =>
             rule.id === action.ruleId ? Object.assign({}, rule, { ruleTypeId: action.ruleTypeId, ruleQualifierId: defaultQualifierId }) : rule)
 
-          return Object.assign({}, state, {rules : newRules});
+          newRuleGroups = state.RuleGroups.map((ruleGroup, index) => action.ruleGroupIndex === index ? Object.assign({}, ruleGroup, {Rules : newRules}) : ruleGroup);
+
+          console.log('new rule groups', newRuleGroups);
+          return Object.assign({}, state, {RuleGroups : newRuleGroups});
 
 
 
           case SET_RULE_QUALIFIER:
 
-          var newRules = state.rules.map(rule =>
+          var newRules = state.RuleGroups[0].Rules.map(rule =>
             rule.id === action.ruleId ? Object.assign({}, rule, { ruleQualifierId: action.ruleQualifierId }) : rule)
 
           return Object.assign({}, state, {rules : newRules});
 
-        case ADD_INITIAL_RULE:
+           case ADD_INITIAL_RULE:
             var newRules = buildNewRules(state, action);
 
-        return Object.assign({}, state, {rules : newRules});
+            newRuleGroups = state.RuleGroups.map((ruleGroup, index) => action.ruleGroupIndex === index ? Object.assign({}, ruleGroup, {Rules : newRules}) : ruleGroup);
+
+          console.log('add initial rule', newRuleGroups);
+          return Object.assign({}, state, {RuleGroups : newRuleGroups});
 
         case INIT_OR_RULE:
-        console.log('init the or rule!');
         var newRules = buildNewRules(state, action);
 
         numberOfNewRules = newRules.length;
         updatedNewRules = newRules.map((rule, index) => index === numberOfNewRules - 2 ? Object.assign({}, rule, {disableAddOrRule: true}) : rule );
+       console.log('rule group index ' + action.ruleGroupIndex);
+        newRuleGroups = state.RuleGroups.map((ruleGroup, index) => action.ruleGroupIndex === index ? Object.assign({}, ruleGroup, {Rules : updatedNewRules}) : ruleGroup);
 
-
-        return Object.assign({}, state, {rules: updatedNewRules});
+          console.log('init or rule', newRuleGroups);
+          return Object.assign({}, state, {RuleGroups : newRuleGroups});
 
         case INIT_AND_RULE:
 

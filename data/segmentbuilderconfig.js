@@ -24,5 +24,7 @@ export const initialState = {
             { id: "IsNotIn", name: "is not in", valueControlType: 'vicinitySelector' }
         ]
     },
-    rules: []
+    RuleGroups: [
+                    { Rules: [] }
+                ]
 }

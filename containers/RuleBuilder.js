@@ -24,7 +24,7 @@ class RuleBuilder extends Component {
         if(valueControl){
 
             if(valueControl === 'textField') {
-                valueControlElement = <Textbox value={rule.ruleCriteria} handleChange={(ruleCriteria) => actions.setRuleQualifier(rule.id, ruleCriteria.Id) } />;
+                valueControlElement = <Textbox value={rule.ruleCriteria} handleChange={(ruleCriteria) => actions.setRuleQualifier(rule.id, ruleCriteria.Id, 0) } />;
                 }
                 else if (valueControl === 'vicinitySelector'){
                 valueControlElement = <input type="search" placeholder="I am a search!!!" />;
@@ -38,20 +38,20 @@ console.log('Add or rules' + rule.disableAddOrRule );
 
                 <div>
 
-                    <Dropdown items={ruleTypes} defaultValue={ruleTypes[0].id} selectedId={rule.ruleTypeId} handleSelectionChanged={ (ruleType) => actions.setRuleType(rule.id, ruleType.id) } />
+                    <Dropdown items={ruleTypes} defaultValue={ruleTypes[0].id} selectedId={rule.ruleTypeId} handleSelectionChanged={ (ruleType) => actions.setRuleType(rule.id, ruleType.id, 0) } />
 
-                    <Dropdown items={ruleQualifiersForType[rule.ruleTypeId]} selectedId={rule.ruleQualifierId} isHidden={ !rule.ruleQualifierId } handleSelectionChanged={ (ruleQualifier) => actions.setRuleQualifier(rule.id, ruleQualifier.id) } />
+                    <Dropdown items={ruleQualifiersForType[rule.ruleTypeId]} selectedId={rule.ruleQualifierId} isHidden={ !rule.ruleQualifierId } handleSelectionChanged={ (ruleQualifier) => actions.setRuleQualifier(rule.id, ruleQualifier.id, 0) } />
 
 
                     { valueControlElement }
 
-                    <Button text="Remove" handleClick={() => actions.removeRule(rule.id)} />
+                    <Button text="Remove" handleClick={() => actions.removeRule(rule.id, 0)} />
 
-                    <ConditionButton text="Or" handleClick={() => actions.initOrRule()} isHidden={ !rule.ruleQualifierId } isDisabled={ rule.disableAddOrRule } />
+                    <ConditionButton text="Or" handleClick={() => actions.initOrRule(0)} isHidden={ !rule.ruleQualifierId } isDisabled={ rule.disableAddOrRule, 0 } />
 
                 </div>
 
-                <ConditionButton text="And" handleClick={() => actions.initAndRule(rule.ruleTypeId)} />
+                <ConditionButton text="And" handleClick={() => actions.initAndRule(0)} />
 
             </section>
         )
