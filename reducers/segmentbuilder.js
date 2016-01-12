@@ -68,7 +68,9 @@ let newRuleGroups = [];
                newRuleGroups = state.RuleGroups.map((ruleGroup, index) => action.ruleGroupIndex === index ? Object.assign({}, ruleGroup, {Rules : newRules}) : ruleGroup);
 
               return Object.assign({}, state, {RuleGroups : newRuleGroups});
-              
+
+
+
         case ADD_INITIAL_RULE:
 
             var newRules = buildNewRules(state, action);
@@ -78,6 +80,8 @@ let newRuleGroups = [];
             console.log('add initial rule', newRuleGroups);
           
             return Object.assign({}, state, {RuleGroups : newRuleGroups});
+
+
 
         case INIT_OR_RULE:
 
@@ -89,11 +93,17 @@ let newRuleGroups = [];
 
             return Object.assign({}, state, {RuleGroups : newRuleGroups});
 
+
+
         case INIT_AND_RULE:
 
             console.log('added and rule');
 
-            return Object.assign({}, state, {initAndRule: true});
+            newRuleGroups = [
+                ...state.RuleGroups,
+                { Rules: [] }];
+
+            return Object.assign({}, state, {RuleGroups: newRuleGroups});
 
 
         default:

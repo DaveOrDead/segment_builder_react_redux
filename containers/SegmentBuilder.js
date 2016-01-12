@@ -1,5 +1,5 @@
 import Dropdown from '../components/Dropdown'
-import Button from '../components/Button'
+import ConditionButton from '../components/ConditionButton'
 import RuleBuilder from './RuleBuilder'
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
@@ -28,12 +28,12 @@ class SegmentBuilder extends Component {
     render() {
 
         const { ruleGroups, actions, ruleTypes } = this.props;
-        let element;
+        let undefinedRuleDropdown;
 
-        if(ruleGroups.length == 1 && ruleGroups[0].Rules.length === 0) {
+        if(ruleGroups[ruleGroups.length - 1].Rules.length === 0) {
 
-            element = (
-                <Dropdown items={ruleTypes} defaultValue={ruleTypes[0].id} handleSelectionChanged={ (ruleType) => actions.addInitialRule(ruleType.id, 0) } />
+            undefinedRuleDropdown = (
+                <Dropdown items={ruleTypes} defaultValue={ruleTypes[0].id} handleSelectionChanged={ (ruleType) => actions.addInitialRule(ruleType.id, ruleGroups.length - 1) } />
                 )
             }
 
@@ -42,10 +42,10 @@ class SegmentBuilder extends Component {
             <section className="container">
                 
                 {   
-                    ruleGroups.map((group) => 
+                    ruleGroups.map((group, groupIndex) => 
                     {
                        return (
-                            <div key={group} className="group-container"> {
+                            <div key={'groupIndex'+groupIndex} className="group-container"> {
                             
                                 group.Rules.map((rule) => 
                             
@@ -53,12 +53,13 @@ class SegmentBuilder extends Component {
                                 
                                 )
                             }
+                                <ConditionButton text="And" isHidden={group.Rules.length === 0} isDisabled={groupIndex !== ruleGroups.length - 1} handleClick={() => actions.initAndRule(groupIndex)} />
                             </div>
                         )
                     }
                 )}
 
-               { element }
+               { undefinedRuleDropdown }
 
 
             </section>

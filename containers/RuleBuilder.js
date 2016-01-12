@@ -33,26 +33,22 @@ class RuleBuilder extends Component {
         console.log('Rule group index: ' + rule.ruleGroupIndex );
 
         return (
-            <div>
 
-                <div className="rule-row">
+            <div className="rule-row">
 
-                    <Dropdown items={ruleTypes} defaultValue={ruleTypes[0].id} selectedId={rule.ruleTypeId} handleSelectionChanged={ (ruleType) => actions.setRuleType(rule.id, ruleType.id, 0) } />
+                <Dropdown items={ruleTypes} defaultValue={ruleTypes[0].id} selectedId={rule.ruleTypeId} handleSelectionChanged={ (ruleType) => actions.setRuleType(rule.id, ruleType.id, 0) } />
 
-                    <Dropdown items={ruleQualifiersForType[rule.ruleTypeId]} selectedId={rule.ruleQualifierId} isHidden={ !rule.ruleQualifierId } handleSelectionChanged={ (ruleQualifier) => actions.setRuleQualifier(rule.id, ruleQualifier.id, 0) } />
+                <Dropdown items={ruleQualifiersForType[rule.ruleTypeId]} selectedId={rule.ruleQualifierId} isHidden={ !rule.ruleQualifierId } handleSelectionChanged={ (ruleQualifier) => actions.setRuleQualifier(rule.id, ruleQualifier.id, 0) } />
 
 
-                    { valueControlElement }
+                { valueControlElement }
 
-                    <Button text="Remove" handleClick={() => actions.removeRule(rule.id, rule.ruleGroupIndex)} />
+                <Button text="Remove" handleClick={() => actions.removeRule(rule.id, rule.ruleGroupIndex)} />
 
-                    <ConditionButton text="Or" handleClick={() => actions.initOrRule(0)} isHidden={ !rule.ruleQualifierId } isDisabled={ rule.disableAddOrRule } />
-
-                </div>
-
-                <ConditionButton text="And" handleClick={() => actions.initAndRule(0)} />
+                <ConditionButton text="Or" handleClick={() => actions.initOrRule(rule.ruleGroupIndex)} isHidden={ !rule.ruleQualifierId } isDisabled={ rule.disableAddOrRule } />
 
             </div>
+
         )
     }
 }
