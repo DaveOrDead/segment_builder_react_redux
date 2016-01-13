@@ -32,17 +32,17 @@ class SegmentBuilder extends Component {
         return (
 
             <section className="container">
-                
-                {   
-                    ruleGroups.map((group, groupIndex) => 
+
+                {
+                    ruleGroups.map((group, groupIndex) =>
                     {
                        return (
                             <div key={'groupIndex'+groupIndex} className="group-container"> {
-                            
-                                group.Rules.map((rule) => 
-                            
+
+                                group.Rules.map((rule) =>
+
                                     <RuleBuilder key={rule.id} rule={rule} />
-                                
+
                                 )
                             }
                                 <ConditionButton text="And" isHidden={group.Rules.length === 0} isDisabled={groupIndex !== ruleGroups.length - 1} handleClick={() => actions.addRuleGroup(groupIndex)} />
@@ -51,7 +51,7 @@ class SegmentBuilder extends Component {
                     }
                 )}
 
-               <Dropdown items={ruleTypes} defaultValue={ruleTypes[0].id} handleSelectionChanged={ (ruleType) => actions.addInitialRuleForGroup(ruleType.id, ruleGroups.length - 1) } isHidden = {ruleGroups[ruleGroups.length - 1].Rules.length !== 0} />
+               <Dropdown items={ruleTypes} selectedId={ruleTypes[0].id} handleSelectionChanged={ (ruleType) => actions.addInitialRuleForGroup(ruleType.id, ruleGroups.length - 1) } isHidden = {ruleGroups[ruleGroups.length - 1].Rules.length !== 0} />
 
 
             </section>

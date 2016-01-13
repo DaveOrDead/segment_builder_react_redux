@@ -1,4 +1,5 @@
 import Textbox from '../components/Textbox'
+import Search from '../components/Search'
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as SegmentBuilderActions from '../actions/segmentbuilder'
@@ -27,9 +28,9 @@ class ValueControl extends Component {
 
         return (
                 <span>
-                    <Textbox value={rule.ruleCriteria} handleChange={(ruleCriteria) => actions.setRuleQualifier(rule.id, ruleCriteria.Id, 0) } isHidden={ valueControlType !== 'textField'} />
-                    <input type="search" placeholder="I am a search!!!" hidden={ valueControlType !== 'vicinitySelector'} />
-                </span>    
+                    <Textbox value={rule.ruleCriteria} isHidden={ valueControlType !== 'textField'} />
+                    <Search isHidden={ valueControlType !== 'vicinitySelector'} />
+                </span>
         )
     }
 }

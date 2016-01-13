@@ -31,11 +31,11 @@ const buildNewRulesAfterRuleRemoval = (state, action) => {
 
      var newRules = state.RuleGroups[action.ruleGroupIndex].Rules.filter(rule => rule.id !== action.ruleId);
      const numberOfNewRules = newRules.length;
-     
+
      if (numberOfNewRules > 0) {
 
          return newRules.map((rule, index) => index === numberOfNewRules - 1 ? Object.assign({}, rule, {disableAddOrRule: false}) : rule );
-     } 
+     }
 
      return newRules;
 }
@@ -86,7 +86,9 @@ export default function segmentBuilder(state = initialState, action) {
 
               newRules = buildNewRulesAfterUpdatingTheRuleQualifier(state, action);
 
-              return Object.assign({}, state, {RuleGroups : buildNewRuleGroups(state, action, newRules)});
+            let newRuleGroups1 = buildNewRuleGroups(state, action, newRules);
+            //console.log('rule groups after updating rule qualifier', newRuleGroups1);
+              return Object.assign({}, state, {RuleGroups : newRuleGroups1});
 
 
 
