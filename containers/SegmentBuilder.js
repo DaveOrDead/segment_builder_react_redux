@@ -37,7 +37,8 @@ class SegmentBuilder extends Component {
                     ruleGroups.map((group, groupIndex) =>
                     {
                        return (
-                            <div key={'groupIndex'+groupIndex} className="group-container"> {
+                            <div key={'groupIndex'+groupIndex} className="segment-container">
+                                <div className="segment-group"> {
 
                                 group.Rules.map((rule) =>
 
@@ -45,7 +46,8 @@ class SegmentBuilder extends Component {
 
                                 )
                             }
-                                <ConditionButton text="And" isHidden={group.Rules.length === 0} isDisabled={groupIndex !== ruleGroups.length - 1} handleClick={() => actions.addRuleGroup(groupIndex)} />
+                                </div>
+                                    <ConditionButton text="And" isHidden={group.Rules.length === 0} isDisabled={groupIndex !== ruleGroups.length - 1} handleClick={() => actions.addRuleGroup(groupIndex)} />
                             </div>
                         )
                     }

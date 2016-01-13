@@ -5,11 +5,15 @@ class Dropdown extends Component {
 
     const { items, selectedId, defaultValue, isHidden } = this.props;
 
-    return <select onChange={(event) => this.change(event)} value={selectedId} defaultValue={defaultValue} hidden={ isHidden }>
+    return (
+        <span className="select-container">
+            <select onChange={(event) => this.change(event)} value={selectedId} defaultValue={defaultValue} hidden={ isHidden }>
       { items.map((item) =>
           <option key={item.id} value={item.id } disabled={item.isDisabled}>{ item.name }</option>
         ) }
-    </select>;
+    </select>
+    </span>
+    );
   }
 
   change(event) {

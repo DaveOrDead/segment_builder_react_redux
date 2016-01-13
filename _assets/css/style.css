@@ -31,3 +31,36 @@ body {
     color: #777;
     cursor: default;
 }
+
+
+
+.segment-group {
+    border: 1px solid #DDD;
+    padding: 0 20px;
+    background: #FCFCFC;
+    border-radius: 4px;
+    list-style: none;
+    display: block;
+    margin: 10px 0;
+}
+
+.rule-row:last-child {
+    border-bottom: none;
+}
+
+.rule-row {
+    border-bottom: 1px dashed #DDD;
+    padding: 15px 0;
+    position: relative;
+    height: 26px;
+}
+
+input[type=text], input[type=search] {
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
+    border-top-color: #c9c9c9;
+    border-radius: 3px;
+    padding: 5px 6px;
+    box-shadow: 0 1px 1px rgba(255,255,255,.45),0 0 2px rgba(74,139,217,0),0 -1px 0 rgba(0,0,0,.02),inset 0 1px 0 rgba(0,0,0,.04),inset 0 2px 0 rgba(0,0,0,.02),inset 1px 0 0 rgba(0,0,0,.04),inset -1px 0 0 rgba(0,0,0,.04);
+    transition: border-color .3s ease;
+}
