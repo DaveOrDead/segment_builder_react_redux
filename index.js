@@ -1,14 +1,19 @@
-import React from 'react'
-import { render } from 'react-dom'
+import SegmentBuilder from './containers/SegmentBuilder'
+import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import App from './containers/App'
+import React, { Component, PropTypes } from 'react'
+import { render } from 'react-dom'
 import configureStore from './store/configureStore'
+import './_assets/css/style.css';
+
 
 const store = configureStore()
 
 render(
   <Provider store={store}>
-    <App />
+    <SegmentBuilder />
   </Provider>,
   document.getElementById('root')
 )
+
+

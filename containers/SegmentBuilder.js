@@ -38,6 +38,7 @@ class SegmentBuilder extends Component {
                     {
                        return (
                             <div key={'groupIndex'+groupIndex} className="segment-container">
+
                                 <div className="segment-group"> {
 
                                 group.Rules.map((rule) =>
