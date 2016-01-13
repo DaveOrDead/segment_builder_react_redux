@@ -35,8 +35,7 @@ export function removeRule(ruleId, ruleGroupIndex) {
 
 export function addInitialRuleForGroup(ruleTypeId, ruleGroupIndex) {
   return {
-    type: ADD_INITIAL_RULE_FOR_GROUP
-  ,
+    type: ADD_INITIAL_RULE_FOR_GROUP,
     ruleTypeId,
     ruleGroupIndex
   }
