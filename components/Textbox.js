@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react'
 
 class Textbox extends Component {
   render() {
-    const { value, handleChange } = this.props;
-    return <input type="text" value={value} onChange={(event) => handleChange(event.target.value)} />;
+    const { value, handleChange, isHidden } = this.props;
+    return <input type="text" value={value} onChange={(event) => handleChange(event.target.value)} hidden={isHidden} />;
   }
 }
 

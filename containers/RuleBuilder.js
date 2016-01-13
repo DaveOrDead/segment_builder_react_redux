@@ -27,7 +27,7 @@ class RuleBuilder extends Component {
     render() {
 
         const { rule, ruleTypes, ruleQualifiersForType, actions } = this.props;
-
+        
         return (
 
             <div className="rule-row">
@@ -36,7 +36,7 @@ class RuleBuilder extends Component {
 
                 <Dropdown items={ruleQualifiersForType[rule.ruleTypeId]} selectedId={rule.ruleQualifierId} isHidden={ !rule.ruleQualifierId } handleSelectionChanged={ (ruleQualifier) => actions.setRuleQualifier(rule.id, ruleQualifier.id, 0) } />
 
-                <ValueControl rule={rule} />
+                <ValueControl rule={rule} valueControlType={rule.ruleQualifierId ? ruleQualifiersForType[rule.ruleTypeId].filter(qualifier => qualifier.id === rule.ruleQualifierId)[0].valueControlType : null} />
 
                 <Button text="Remove" handleClick={() => actions.removeRule(rule.id, rule.ruleGroupIndex)} />
 

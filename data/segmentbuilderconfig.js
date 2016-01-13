@@ -26,6 +26,5 @@ export const initialState = {
     },
     RuleGroups: [
                     { Rules: [] }
-                        
                 ]
 }

@@ -1,10 +1,10 @@
-export const SET_RULE_TYPE      = 'SET RULE TYPE'
-export const SET_RULE_CRITERIA  = 'SET RULE CRITERIA'
-export const SET_RULE_QUALIFIER = 'SET RULE QUALIFIER'
-export const REMOVE_RULE        = 'REMOVE RULE'
-export const ADD_INITIAL_RULE   = 'ADD INITIAL RULE'
-export const ADD_RULE_GROUP      = 'ADD RULE GROUP'
-export const ADD_RULE       = 'ADD RULE'
+export const SET_RULE_TYPE                = 'SET RULE TYPE'
+export const SET_RULE_CRITERIA            = 'SET RULE CRITERIA'
+export const SET_RULE_QUALIFIER           = 'SET RULE QUALIFIER'
+export const REMOVE_RULE                  = 'REMOVE RULE'
+export const ADD_INITIAL_RULE_FOR_GROUP   = 'ADD INITIAL RULE FOR GROUP'
+export const ADD_RULE_GROUP               = 'ADD RULE GROUP'
+export const ADD_RULE                     = 'ADD RULE'
 
 
 export function setRuleType(ruleId, ruleTypeId, ruleGroupIndex) {
@@ -33,9 +33,10 @@ export function removeRule(ruleId, ruleGroupIndex) {
   }
 }
 
-export function addInitialRule(ruleTypeId, ruleGroupIndex) {
+export function addInitialRuleForGroup(ruleTypeId, ruleGroupIndex) {
   return {
-    type: ADD_INITIAL_RULE,
+    type: ADD_INITIAL_RULE_FOR_GROUP
+  ,
     ruleTypeId,
     ruleGroupIndex
   }

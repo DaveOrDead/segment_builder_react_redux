@@ -51,7 +51,7 @@ class SegmentBuilder extends Component {
                     }
                 )}
 
-               <Dropdown items={ruleTypes} defaultValue={ruleTypes[0].id} handleSelectionChanged={ (ruleType) => actions.addInitialRule(ruleType.id, ruleGroups.length - 1) } isHidden = {ruleGroups[ruleGroups.length - 1].Rules.length !== 0} />
+               <Dropdown items={ruleTypes} defaultValue={ruleTypes[0].id} handleSelectionChanged={ (ruleType) => actions.addInitialRuleForGroup(ruleType.id, ruleGroups.length - 1) } isHidden = {ruleGroups[ruleGroups.length - 1].Rules.length !== 0} />
 
 
             </section>

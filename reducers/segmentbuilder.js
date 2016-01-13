@@ -1,4 +1,4 @@
-import { SET_RULE_TYPE, SET_RULE_CRITERIA, SET_RULE_QUALIFIER, REMOVE_RULE, ADD_INITIAL_RULE, ADD_RULE, ADD_RULE_GROUP } from '../actions/segmentbuilder'
+import { SET_RULE_TYPE, SET_RULE_CRITERIA, SET_RULE_QUALIFIER, REMOVE_RULE, ADD_INITIAL_RULE_FOR_GROUP, ADD_RULE, ADD_RULE_GROUP } from '../actions/segmentbuilder'
 import { initialState } from '../data/segmentbuilderconfig'
 
 const buildNewRulesAfterInitialRuleAddition = (state, action) => {
@@ -90,7 +90,7 @@ export default function segmentBuilder(state = initialState, action) {
 
 
 
-        case ADD_INITIAL_RULE:
+        case ADD_INITIAL_RULE_FOR_GROUP:
 
             newRules = buildNewRulesAfterInitialRuleAddition(state, action);
 
